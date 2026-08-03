@@ -1,0 +1,6 @@
+nilai = int(input("masukkan nilai:"))
+
+if nilai % 2 == 0:
+    print("nilai", nilai, "adalah bilangan genap")
+else:
+    print("nilai", nilai, "adalah bilangan ganjil")
