@@ -4,3 +4,11 @@ if nilai % 2 == 0:
     print("nilai", nilai, "adalah bilangan genap")
 else:
     print("nilai", nilai, "adalah bilangan ganjil")
+while True:
+    angka=  int(input("Masukkan bilangan:  "))
+
+
+    if angka % 2 == 0:
+        print(angka, "adalah bilangan genap")
+    else:
+        print(angka, "adalah bilangan ganjil")
