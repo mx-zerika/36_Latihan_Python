@@ -6,6 +6,15 @@ def perulangan_ganjil_genap():
             print("nilai", nilai, "adalah bilangan genap")
         else:
             print("nilai", nilai, "adalah bilangan ganjil")
-    
-perulangan_ganjil_genap()
 
+def bilangan_prima():
+    while True:
+        angka = int(input("masukkan angka:"))
+
+        if angka % 2 == 0:
+            print("angka", angka, "adalah bilangan prima")
+        else:
+            print("angka", angka, "bukanlah bilangan prima")
+
+perulangan_ganjil_genap()
+bilangan_prima()
