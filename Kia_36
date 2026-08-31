@@ -1,6 +1,6 @@
 def ganjil_genap():
     while True:
-        nilai = int(input("masukkan nilai:"))
+        nilai = int(input("masukkan nilai (0 untuk kembali): "))
 
         if nilai == 0:
             break
@@ -11,8 +11,11 @@ def ganjil_genap():
             print("nilai", nilai, "adalah bilangan ganjil")
 
 def bilangan_prima():
-     while True:
-        angka = int(input("masukkan angka: "))
+    while True:
+        angka = int(input("masukkan angka (0 untuk kembali): "))
+
+        if angka == 0:
+            break 
 
         if angka < 2:
             print(angka, "bukanlah bilangan prima")
@@ -29,5 +32,26 @@ def bilangan_prima():
             else:
                 print(angka, "bukanlah bilangan prima")
 
-ganjil_genap()
-bilangan_prima()
+def menu():
+    while True:
+        print("==  MENU ==")
+        print("1. Ganjil - Genap")
+        print("2. Bilangan Prima")
+        print("3. Keluar")
+
+        pilihan = input("Pilih Menu: ")
+
+        if pilihan == "1":
+            ganjil_genap()
+
+        elif pilihan == "2":
+            bilangan_prima()
+
+        elif pilihan == "3":
+            print("Program Selesai.")
+            break
+
+        else:
+            print("Pilihan tidak tersedia.")
+
+menu()
