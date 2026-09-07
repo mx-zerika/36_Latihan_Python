@@ -1,2 +1,3 @@
->PS C:\Users\USER> python --version
-Python 3.14.6
+import modul_perulangan
+
+modul_perulangan.ganjil_genap()
