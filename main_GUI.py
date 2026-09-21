@@ -9,7 +9,7 @@ import  tkinter as tk
 
 window  = tk.Tk()
 window.title("Program Kia")
-window.geometry("500x400")
+window.geometry("600x500")
 window.resizable(False, False)
 
 # Warna
