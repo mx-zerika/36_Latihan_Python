@@ -1,5 +1,6 @@
 import  tkinter as tk
-
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 # =========================
@@ -82,6 +83,38 @@ def cek_prima():
               text=f"{angka} bukan bilangan prima", fg=ACCENT 
               )
 
+def analisis_angka():
+     angka =  input_analisis.get()
+
+     data = [float(x) for x in angka.split(",")]
+
+     data_np = np.array(data)
+
+     rata_rata = np.mean(data_np)
+     terbesar = np.max(data_np)
+     terkecil = np.min(data_np)
+
+     hasil_analisis.config(
+          text= f"Rata-rata: {rata_rata}\n"
+                f"Terbesar: {terbesar}\n"
+                f"Terkecil: {terkecil}"
+     )
+
+def tampilan_grafik():
+     angka = input_analisis.get()
+
+     data = [float(x) for x in angka.split(",")]
+
+     data_np = np.array(data)
+
+
+     plt.plot(data_np, marker="o")
+
+     plt.title("Grafik Angka")
+     plt.xlabel("Urutan Data")
+     plt.ylabel("Nilai")
+
+     plt.show()
 
 # =============================================
 # CONTAINER UNTUK SEMUA SCREEN
@@ -302,6 +335,125 @@ hasil_prima.pack(pady=(20, 0))
 
 button_back_prima = tk.Button(prima_frame, text="<- Back", font=("Arial", 10), bg=BG, fg=SUBTEXT, activebackground=BG, activeforeground=TEXT, command=lambda: show_frame(home_frame))
 button_back_prima.pack(pady=25)
+
+analisis_frame= tk.Frame(
+     container,
+     bg=BG
+)
+
+analisis_frame.grid(
+     row=0,
+     column=0,
+     sticky="nsew"
+)
+
+tk.Label(
+     analisis_frame,
+     text="Analisis Angka",
+     font=("Arial", 26, "bold"),
+     bg=BG,
+     fg=TEXT
+).pack(pady=(55, 5))
+
+tk.Label(
+     analisis_frame,
+     text="Masukkan angka yang dipisahkan koma",
+     font=("Arial", 10),
+     bg=BG,
+     fg=SUBTEXT
+).pack(pady=(0, 25))
+
+analisis_card = tk.Frame(
+    analisis_frame,
+    bg=CARD,
+    padx=45,
+    pady=30
+)
+
+analisis_card.pack()
+
+
+tk.Label(
+    analisis_card,
+    text="ENTER NUMBERS",
+    font=("Arial", 9, "bold"),
+    bg=CARD,
+    fg=SUBTEXT
+).pack(pady=(0, 8))
+
+
+input_analisis = tk.Entry(
+    analisis_card,
+    font=("Arial", 14),
+    justify="center",
+    width=25,
+    bg=CARD_LIGHT,
+    fg=TEXT,
+    insertbackground=TEXT,
+    relief="flat"
+)
+
+input_analisis.pack(
+    pady=(0, 18),
+    ipady=8
+)
+
+
+tk.Button(
+    analisis_card,
+    text="ANALYZE",
+    font=("Arial", 10, "bold"),
+    bg=ACCENT,
+    fg=TEXT,
+    activebackground=ACCENT_HOVER,
+    relief="flat",
+    width=22,
+    pady=9,
+    cursor="hand2",
+    command=analisis_angka
+).pack()
+
+
+hasil_analisis = tk.Label(
+    analisis_card,
+    text="Result will appear here",
+    font=("Arial", 11, "bold"),
+    bg=CARD,
+    fg=SUBTEXT
+)
+
+hasil_analisis.pack(pady=(20, 10))
+
+
+tk.Button(
+    analisis_card,
+    text="SHOW GRAPH",
+    font=("Arial", 10, "bold"),
+    bg=BUTTON,
+    fg=TEXT,
+    activebackground=ACCENT_HOVER,
+    relief="flat",
+    width=22,
+    pady=9,
+    cursor="hand2",
+    command=tampilan_grafik
+).pack()
+
+
+tk.Button(
+    home_card,
+    text="  Analisis Angka",
+    font=("Arial", 12, "bold"),
+    bg=BUTTON,
+    fg=TEXT,
+    activebackground=ACCENT_HOVER,
+    activeforeground=TEXT,
+    relief="flat",
+    width=28,
+    pady=12,
+    cursor="hand2",
+    command=lambda: show_frame(analisis_frame)
+).pack(pady=7)
 
 # ==============================================================
 # TAMPILKAN HOME SAAT PROGRAM DIMULAI
