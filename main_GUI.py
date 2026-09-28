@@ -8,17 +8,27 @@ import  tkinter as tk
 
 
 window  = tk.Tk()
-window.title("Program Kia")
-window.geometry("600x500")
+window.title("Mathcheck")
+window.geometry("650x550")
 window.resizable(False, False)
 
-# Warna
-BG = "#1E1E2E"
-CARD  = "#2A2A3C"
-TEXT = "#F5F5F5"
-SUBTEXT = "#B8B8C7"
+
+# ========================
+# COLOR
+# ========================
+
+
+BG = "#171722"
+CARD  = "#242438"
+CARD_LIGHT = "#2D2D45"
+
+TEXT = "#F5F5F7"
+SUBTEXT = "#A8A8BA"
+
 ACCENT = "#9D7CFF"
-BUTTON = "#3A3A52"
+ACCENT_HOVER = "#B29AFF"
+
+BUTTON = "#383850"
 
 # =========================
 # FUNCTION UNTUK PINDAH SCREEN
@@ -37,16 +47,22 @@ def cek_ganjil_genap():
     angka = int(input_ganjil.get())
 
     if angka % 2 ==  0:
-        hasil_ganjil.config(text="Bilangan Genap", fg=ACCENT)
+        hasil_ganjil.config(
+             text="Bilangan Genap", fg=ACCENT
+             )
     else:
-        hasil_ganjil.config(text="Bilangan Ganjil", fg=ACCENT)
+        hasil_ganjil.config(
+             text="Bilangan Ganjil", fg=ACCENT
+             )
 
 def cek_prima(): 
     angka = int(input_prima.get()) 
 
     if angka < 2: 
 
-        hasil_prima.config( text=f"{angka} bukan bilangan prima", fg=ACCENT ) 
+        hasil_prima.config( 
+             text=f"{angka} bukan bilangan prima", fg=ACCENT 
+             ) 
         return 
 
     prima = True 
@@ -57,39 +73,82 @@ def cek_prima():
             break 
 
     if prima: 
-            hasil_prima.config( text=f"{angka} adalah bilangan prima", fg=ACCENT ) 
+            hasil_prima.config( 
+                 text=f"{angka} adalah bilangan prima", fg=ACCENT 
+                 ) 
 
     else: 
-         hasil_prima.config( text=f"{angka} bukan bilangan prima", fg=ACCENT )
+         hasil_prima.config( 
+              text=f"{angka} bukan bilangan prima", fg=ACCENT 
+              )
 
 
 # =============================================
 # CONTAINER UNTUK SEMUA SCREEN
 # =============================================
 
-container = tk.Frame(window, bg=BG)
+container = tk.Frame(
+     window, 
+     bg=BG
+     )
 
-container.pack(fill="both", expand=True)
+container.pack(
+     fill="both", 
+     expand=True
+     )
 
-container.grid_rowconfigure(0, weight=1)
-container.grid_columnconfigure(0, weight=1)
+container.grid_rowconfigure(
+     0, 
+     weight=1
+     )
+container.grid_columnconfigure(
+     0, 
+     weight=1
+     )
 
 # ============================================
 # HOME SCREEN
 # ============================================
 
-home_frame = tk.Frame(container, bg=BG)
-home_frame.grid(row=0, column=0, sticky="nsew")
+home_frame = tk.Frame(
+     container, 
+     bg=BG
+     )
+home_frame.grid(
+     row=0, 
+     column=0, 
+     sticky="nsew"
+     )
 
-judul_home =  tk.Label(home_frame, text="MODULPERULANGAN", font=("Arial", 24, "bold"), bg=BG, fg=TEXT)
-judul_home.pack(pady=(60, 5))
+#  MAIN TITLE
 
-subjudul_home =  tk.Label(home_frame, text="Pilih program yang ingin anda gunakan", font=("Arial", 10), bg=BG, fg=SUBTEXT)
-subjudul_home.pack(pady=(0, 30))
+tk.Label(
+     home_frame, 
+     text="MATHCHECK",
+     font=("Arial", 28, "bold"), 
+     bg=BG, 
+     fg=TEXT
+     ).pack()
+
+# SMALL TOP TEXT
+
+tk.Label(
+     home_frame, 
+     text="Pilih program yang ingin anda gunakan", 
+     font=("Arial", 10), 
+     bg=BG, 
+     fg=ACCENT
+     ).pack(pady =(55, 5))
 
 # Card Home
 
-home_card = tk.Frame(home_frame, bg=CARD, padx=40, pady=30)
+home_card = tk.Frame(
+     home_frame, 
+     bg=CARD, 
+     padx=40, 
+     pady=30
+     )
+
 home_card.pack()
 
 
@@ -99,27 +158,80 @@ home_card.pack()
 
 # Tombol Ganjil genap
 
-button_ganjil_genap = tk.Button(home_card, text="Bilangan Ganjil-Genap", font=("Arial", 11, "bold"), bg=BUTTON, fg=TEXT, activebackground=ACCENT, activeforeground=TEXT, relief="flat", width=25, pady=10, command=lambda: show_frame(ganjil_genap_frame))
-button_ganjil_genap.pack(pady=8)
+button_ganjil_genap = tk.Button(
+     home_card, 
+     text="Ganjil / Genap", 
+     font=("Arial", 12, "bold"), 
+     bg=BUTTON, 
+     fg=TEXT, 
+     activebackground=ACCENT_HOVER, 
+     activeforeground=TEXT, 
+     relief="flat", 
+     width=28, 
+     pady=12,
+     cursor="hand2", 
+     command=lambda: show_frame(ganjil_genap_frame)
+     )
+
+button_ganjil_genap.pack(pady=7)
 
 # Tombol bilangan Prima
 
-button_prima = tk.Button(home_card, text="Bilangan Prima", font=("Arial", 11, "bold"), bg=BUTTON, fg=TEXT, activebackground=ACCENT, activeforeground=TEXT, relief="flat", width=25, pady=10, command=lambda: show_frame(prima_frame))
+button_prima = tk.Button(
+     home_card, 
+     text=" Bilangan Prima", 
+     font=("Arial", 12, "bold"), 
+     bg=BUTTON, 
+     fg=TEXT, 
+     activebackground=ACCENT_HOVER, 
+     activeforeground=TEXT, 
+     relief="flat", 
+     width=28, 
+     pady=12,
+     cursor="hand2", 
+     command=lambda: show_frame(prima_frame))
 
-button_prima.pack(pady=8)
+button_prima.pack(pady=7)
 
+# Footer
+tk.Label(
+     home_frame,
+     text="MADE WITH PYTHON . TKINTER",
+     font=("Arial", 9),
+        bg=BG,
+        fg=SUBTEXT
+).pack(pady=25)
 
 # ========================================
 # GANJIL GENAP SCREEN
 # ========================================
 
-ganjil_genap_frame = tk.Frame(container, bg=BG)
-ganjil_genap_frame.grid(row=0, column=0, sticky="nsew")
+ganjil_genap_frame = tk.Frame(
+     container, 
+     bg=BG)
+ganjil_genap_frame.grid(
+     row=0, 
+     column=0, 
+     sticky="nsew"
+     )
 
-judul_ganjil_genap = tk.Label(ganjil_genap_frame, text="Cek Ganjil / Genap", font=("Arial", 24, "bold"), bg=BG, fg=TEXT)
+judul_ganjil_genap = tk.Label(
+     ganjil_genap_frame, 
+     text="Cek Ganjil / Genap", 
+     font=("Arial", 24, "bold"), 
+     bg=BG, 
+     fg=TEXT
+     )
+
 judul_ganjil_genap.pack(pady=(50, 5))
 
-subjudul_ganjil_genap = tk.Label(ganjil_genap_frame, text="Masukkan angka yang ingin di-cek", font=("Arial", 10), bg=BG, fg=SUBTEXT)
+subjudul_ganjil_genap = tk.Label(
+     ganjil_genap_frame, 
+     text="Masukkan angka yang ingin di-cek", 
+     font=("Arial", 10), 
+     bg=BG, 
+     fg=SUBTEXT
+     )
 subjudul_ganjil_genap.pack(pady=(0, 25))
 
 ganjil_card = tk.Frame(ganjil_genap_frame, bg=CARD, padx=40, pady=30)
@@ -166,8 +278,22 @@ input_prima = tk.Entry(prima_card, font=("Arial", 14), justify="center", width=2
 input_prima.pack(pady=(0, 15))
 
 
-button_cek_prima = tk.Button(prima_frame, text="Cek", font=("Arial", 10, "bold"), bg=BUTTON, fg=TEXT, activebackground=ACCENT, activeforeground=TEXT, relief="flat", width=20, pady=8, command=cek_prima)
-button_cek.pack()
+button_cek_prima = tk.Button(
+    prima_card,
+    text="Cek",
+    font=("Arial", 10, "bold"),
+    bg=BUTTON,
+    fg=TEXT,
+    activebackground=ACCENT,
+    activeforeground=TEXT,
+    relief="flat",
+    width=20,
+    pady=8,
+    command=cek_prima
+)
+
+button_cek_prima.pack(pady=(0, 5))
+
 
 hasil_prima  = tk.Label(prima_card, text="Hasil akan muncul di sini", font=("Arial", 11, "bold"), bg=CARD, fg=SUBTEXT)
 hasil_prima.pack(pady=(20, 0))
@@ -179,7 +305,7 @@ button_back_prima.pack(pady=25)
 
 # ==============================================================
 # TAMPILKAN HOME SAAT PROGRAM DIMULAI
-# =============================================================
+# ==============================================================
 
 show_frame(home_frame)
 
